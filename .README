@@ -1,0 +1,4 @@
+# How to download
+
+wget -O - https://raw.githubusercontent.com/<username>/<project>/<branch>/<path>/configure-dots.sh | bash
+

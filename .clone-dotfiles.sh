@@ -13,14 +13,14 @@ echo ""
 echo ""
 sleep 2
 echo "Checking if backup is neccesary for your .dotfiles"
-mkdir -p .config-backup
+mkdir -p ~/.config-backup
+mv ~/.gitignore ~/.config-backup
 dotfile checkout
 if [ $? = 0 ]; then
   echo "Download complete";
   else
     echo "Creating backup of your .dotfiles";
     dotfile checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-    mv ~/.gitignore ~/.config-backup
     echo "Your previous .dotfiles are backed up at .config-backup folder"
 fi;
 sleep 1

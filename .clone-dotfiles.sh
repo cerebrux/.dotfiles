@@ -26,7 +26,16 @@ sleep 1
 dotfile checkout
 dotfile config status.showUntrackedFiles no
 echo ""
-echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
+echo "Downloading Vim-Plug for NeoVim"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
-nvim +PlugInstall +qall
+echo ""
+sleep 1
+echo "Downloading coc.nvim plugin"
+mkdir -p ~/.local/share/nvim/site/pack/coc/start
+cd ~/.local/share/nvim/site/pack/coc/start
+curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzfv -
+echo ""
+echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
+nvim +PlugUpdate +qall
+echo ""
 echo "You are now ready !"

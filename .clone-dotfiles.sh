@@ -14,7 +14,6 @@ echo ""
 sleep 2
 echo "Checking if backup is neccesary for your .dotfiles"
 mkdir -p ~/.config-backup
-mv ~/.gitignore ~/.config-backup
 dotfile checkout
 if [ $? = 0 ]; then
   echo "Download complete";

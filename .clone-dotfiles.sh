@@ -1,5 +1,5 @@
 #!/usr/bin/env sh
-set -e
+set +e
 
 function dotfile {
    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
@@ -7,11 +7,11 @@ function dotfile {
 
 clear
 echo "Downloading .dotfiles"
-sleep 2
+sleep 1
 git clone --bare https://github.com/cerebrux/.dotfiles.git $HOME/.dotfiles
 echo ""
 echo ""
-sleep 2
+sleep 1
 echo "Checking if backup is neccesary for your .dotfiles"
 mkdir -p ~/.config-backup
 dotfile checkout

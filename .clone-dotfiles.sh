@@ -20,6 +20,7 @@ if [ $? = 0 ]; then
   else
     echo "Creating backup of your .dotfiles";
     dotfile checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
+    mv ~/.gitignore ~/.config-backup
     echo "Your previous .dotfiles are backed up at .config-backup folder"
 fi;
 sleep 1

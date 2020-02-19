@@ -17,4 +17,8 @@ if [ $? = 0 ]; then
 fi;
 dotfile checkout
 dotfile config status.showUntrackedFiles no
+echo ""
+echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
+curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+nvim +PlugUpdate +qall
 echo "You are now ready !"

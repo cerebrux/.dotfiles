@@ -1,11 +1,34 @@
 #!/usr/bin/env sh
-set +e
+# set +e
+
+function downloader {
+command -v git >/dev/null 2>&1 || { echo >&2 "I require Git but it's not installed. Aborting..."; exit 1; }
+}
+
+function depends {
+  for i in nvim nodejs; do
+    if hash $i 2>/dev/null; then
+      echo ""
+      echo $i "is installed"
+      echo ""
+    else
+      echo ""
+      echo $i "is NOT installed. Please install it with your package manger"
+      echo ""
+    fi
+  done    
+}
 
 function dotfile {
    git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
 }
 
 clear
+echo "Checking Dependencies..."
+downloader
+depends
+sleep 1
+echo ""
 echo "Downloading .dotfiles"
 sleep 1
 git clone --bare https://github.com/cerebrux/.dotfiles.git $HOME/.dotfiles
@@ -37,5 +60,8 @@ curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar x
 echo ""
 echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
 nvim +PlugUpdate +qall
+echo ""
+echo "Adding dotfile command to your .bashrc"
+echo "alias dotfile='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
 echo ""
 echo "You are now ready !"

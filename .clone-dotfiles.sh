@@ -59,7 +59,7 @@ cd ~/.local/share/nvim/site/pack/coc/start
 curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzfv -
 echo ""
 echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
-nvim +PlugUpdate +qall
+#nvim +PlugUpdate +qall
 echo ""
 echo "Adding dotfile command to your .bashrc"
 echo "alias dotfile='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc

@@ -49,6 +49,9 @@ sleep 1
 dotfile checkout
 dotfile config status.showUntrackedFiles no
 echo ""
+echo "Adding dotfile command to your .bashrc"
+echo "alias dotfile='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
+echo ""
 echo "Downloading Vim-Plug for NeoVim"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
 echo ""
@@ -59,9 +62,6 @@ cd ~/.local/share/nvim/site/pack/coc/start
 curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzfv -
 echo ""
 echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
-nvim +PlugInstall +qall
-echo ""
-echo "Adding dotfile command to your .bashrc"
-echo "alias dotfile='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
+nvim --headless +PlugInstall +qall
 echo ""
 echo "You are now ready !"

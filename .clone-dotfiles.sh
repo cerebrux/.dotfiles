@@ -58,10 +58,10 @@ echo "Downloading coc.nvim plugin"
 mkdir -p ~/.local/share/nvim/site/pack/coc/start
 cd ~/.local/share/nvim/site/pack/coc/start
 curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzfv -
-cd ~/.vim/plugged/coc.nvim/ && ./install.sh
 echo ""
 echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
 nvim --headless +PlugInstall +qall
+cd ~/.vim/plugged/coc.nvim/ && ./install.sh
 sleep 1
 echo ""
 echo ""

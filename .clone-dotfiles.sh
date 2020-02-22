@@ -61,6 +61,8 @@ curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar x
 echo ""
 echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
 nvim --headless +PlugInstall +qall
+mkdir ~/.vim/colors/
+cp ~/.vim/plugged/gruvbox/colors/gruvbox.vim ~/.vim/colors/gruvbox.vim
 cd ~/.vim/plugged/coc.nvim/ && ./install.sh
 sleep 1
 echo ""

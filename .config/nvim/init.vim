@@ -13,10 +13,10 @@ Plug 'scrooloose/nerdcommenter'
 "Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
 
 Plug 'christoomey/vim-tmux-navigator'
-"the theme:"
-Plug 'morhetz/gruvbox'
 
 Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
+"the theme:"
+Plug 'morhetz/gruvbox'
 
 " Initialize plugin system
 call plug#end()

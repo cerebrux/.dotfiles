@@ -20,7 +20,7 @@ Plug 'morhetz/gruvbox'
 
 " Initialize plugin system
 call plug#end()
-
+colorscheme gruvbox
 inoremap jk <ESC>
 nmap <C-n> :NERDTreeToggle<CR>
 vmap ++ <plug>NERDCommenterToggle
@@ -72,8 +72,6 @@ set tabstop=2
 set shiftwidth=2
 " always uses spaces instead of tab characters
 set expandtab
-
-colorscheme gruvbox
 
 " sync open file with NERDTree
 " " Check if NERDTree is open or active

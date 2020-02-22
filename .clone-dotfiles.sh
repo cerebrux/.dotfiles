@@ -10,9 +10,7 @@ function depends {
     if hash $i 2>/dev/null; then
       echo ""
       echo $i "is installed"
-      echo ""
     else
-      echo ""
       echo $i "is NOT installed. Please install it with your package manger"
       echo ""
     fi

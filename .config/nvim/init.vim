@@ -1,32 +1,57 @@
+"set encoding=UTF-8 <-- Only for Vim not Nvim as UTF-8 is default
+"Plungins that are enabled :                                  
+"- vim-nerdtree-syntax-highlight:syntax for nerdtree on most common file extensions
+"- vim-devicons: Adds filetype glyphs (icons) to various vim plugins. 
+"- nerdcommenter: Comment functions so powerful—no comment necessary.
+"- vim-gitgutter: It shows which lines have been added, modified, or removed
+"- gruvbox: The best looking theme. Period. 
+"- nerdtree: The defacto File manager
+"- ctrlp.vim: fuzzy find files 
+"- nerdtree-git-plugin: NERDTree showing git status flags
+"- coc.nvim: Coc is an intellisense engine
+"- vim-airline: Lean & mean status/tabline for vim that's light as air.
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
-Plug 'scrooloose/nerdtree'
-"Plug 'tsony-tsonev/nerdtree-git-plugin'
+
+"----NERDTree File Manager Plugins with Git status support----
+Plug 'preservim/nerdtree'
 Plug 'Xuyuanp/nerdtree-git-plugin'
 Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
+"-------------------------------------------------------------
 Plug 'airblade/vim-gitgutter'
+Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
-"Plug 'prettier/vim-prettier', { 'do': 'yarn install' }
-
-Plug 'christoomey/vim-tmux-navigator'
-
-Plug 'HerringtonDarkholme/yats.vim' " TS Syntax
-"the theme:"
 Plug 'morhetz/gruvbox'
-
+Plug 'benmills/vimux'
 " Initialize plugin system
 call plug#end()
 colorscheme gruvbox
-inoremap jk <ESC>
-nmap <C-n> :NERDTreeToggle<CR>
-vmap ++ <plug>NERDCommenterToggle
-nmap ++ <plug>NERDCommenterToggle
+"Pressing both 'jk' will invoke ESC key: "
+inoremap jk <ESC> 
 
-" open NERDTree automatically
+" default updatetime 4000ms is not good for async update
+set updatetime=100
+"===NERDTree======
+"Keyboard Commands
+"Type :help NERDTreeMappings to read through all of the default keyboard shortcuts. These are the ones I use the most frequently:
+"t: Open the selected file in a new tab
+"i: Open the selected file in a horizontal split window
+"s: Open the selected file in a vertical split window
+"I: Toggle hidden files
+"m: Show the NERD Tree menu
+"R: Refresh the tree, useful if files change outside of Vim
+"?: Toggle NERD Tree's quick help
+
+
+"Press Ctrl+n to open Side Pane file manager
+"Press Q to close a pane"
+nmap <C-n> :NERDTreeToggle<CR>
+
+"open NERDTree automatically
 "autocmd StdinReadPre * let s:std_in=1
 "autocmd VimEnter * NERDTree
 
@@ -47,14 +72,58 @@ let g:NERDTreeColorMapCustom = {
 
 let g:NERDTreeIgnore = ['^node_modules$']
 
-" vim-prettier
+"Mitigating lag issues wiht tiagofumo/vim-nerdtree-syntax-highlight
+"Some users are reporting they feel some lag when using this plugin. 
+"There are ways to mitigate this lag. One way is to disable most of the the default highlight exntensions. 
+"The code is going to color over than 80 extensions by default,
+"even if you are not using most of them. One easy way to do this is using the limited syntax mode:
+
+"This configuration will limit the extensions used to these:
+
+".bmp, .c, .coffee, .cpp, .css, .erb, .go, .hs, .html, .java, .jpg, .js, .json, .jsx, .less, .lua, .markdown, .md, .php, .png, .pl, .py, .rb, .rs, .scala, .scss, .sh, .sql, .vim
+
+let g:NERDTreeLimitedSyntax = 1
+"If this doens't solve your lag, or doesn't include the extensions you normaly use,
+"you can choose the extensions you want to enable. 
+"For example, if you work with C, php, ruby and javascript, 
+"you could add something like this to your .vimrc instead:
+
+"let g:NERDTreeSyntaxDisableDefaultExtensions = 1
+"let g:NERDTreeDisableExactMatchHighlight = 1
+"let g:NERDTreeDisablePatternMatchHighlight = 1
+"let g:NERDTreeSyntaxEnabledExtensions = ['c', 'h', 'c++', 'php', 'rb', 'js', 'css'] " example
+
+" sync open file with NERDTree
+autocmd BufEnter * lcd %:p:h
+
+" Check if NERDTree is open or active
+function! IsNERDTreeOpen()        
+  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
+endfunction
+
+"How can I close vim if the only window left open is a NERDTree
+autocmd bufenter * if (winnr("$") == 1 && exists("b:NERDTree") && b:NERDTree.isTabTree()) | q | endif
+
+"===NERDTree======
+"
+"=== NERDCommenter ====
+" You can highlight multiple lines and then press ++ to comment them out
+vmap ++ <plug>NERDCommenterToggle
+nmap ++ <plug>NERDCommenterToggle
+"=== ==== ====
+
+"==== vim-prettier ======
 "let g:prettier#quickfix_enabled = 0
 "let g:prettier#quickfix_auto_focus = 0
-" prettier command for coc
-command! -nargs=0 Prettier :CocCommand prettier.formatFile
-" run prettier on save
+"" prettier command for coc
+"command! -nargs=0 Prettier :CocCommand prettier.formatFile
+"" run prettier on save
 "let g:prettier#autoformat = 0
-"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html PrettierAsync
+"autocmd BufWritePre *.js,*.jsx,*.mjs,*.ts,*.tsx,*.css,*.less,*.scss,*.json,*.graphql,*.md,*.vue,*.yaml,*.html,*.go,*.sh PrettierAsync
+""==== vim-prettier ======
+
+"Airline Powerline Fonts support :
+let g:airline_powerline_fonts = 1
 
 
 " ctrlp
@@ -73,23 +142,7 @@ set shiftwidth=2
 " always uses spaces instead of tab characters
 set expandtab
 
-" sync open file with NERDTree
-" " Check if NERDTree is open or active
-function! IsNERDTreeOpen()        
-  return exists("t:NERDTreeBufName") && (bufwinnr(t:NERDTreeBufName) != -1)
-endfunction
 
-" Call NERDTreeFind iff NERDTree is active, current window contains a modifiable
-" file, and we're not in vimdiff
-function! SyncTree()
-  if &modifiable && IsNERDTreeOpen() && strlen(expand('%')) > 0 && !&diff
-    NERDTreeFind
-    wincmd p
-  endif
-endfunction
-
-" Highlight currently open buffer in NERDTree
-autocmd BufEnter * call SyncTree()
 
 " coc config
 let g:coc_global_extensions = [

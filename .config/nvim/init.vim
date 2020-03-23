@@ -1,15 +1,17 @@
 "set encoding=UTF-8 <-- Only for Vim not Nvim as UTF-8 is default
 "Plungins that are enabled :                                  
-"- vim-nerdtree-syntax-highlight:syntax for nerdtree on most common file extensions
-"- vim-devicons: Adds filetype glyphs (icons) to various vim plugins. 
-"- nerdcommenter: Comment functions so powerful—no comment necessary.
-"- vim-gitgutter: It shows which lines have been added, modified, or removed
-"- gruvbox: The best looking theme. Period. 
-"- nerdtree: The defacto File manager
-"- ctrlp.vim: fuzzy find files 
-"- nerdtree-git-plugin: NERDTree showing git status flags
-"- coc.nvim: Coc is an intellisense engine
-"- vim-airline: Lean & mean status/tabline for vim that's light as air.
+"1 - vim-nerdtree-syntax-highlight:syntax for nerdtree on most common file extensions
+"2 - vim-devicons: Adds filetype glyphs (icons) to various vim plugins. 
+"3 - nerdcommenter: Comment functions so powerful—no comment necessary.
+"4 - vim-gitgutter: It shows which lines have been added, modified, or removed
+"5 - gruvbox: The best looking theme. Period. 
+"6 - nerdtree: The defacto File manager
+"7 - ctrlp.vim: fuzzy find files 
+"8 - nerdtree-git-plugin: NERDTree showing git status flags
+"9 - coc.nvim: Coc is an intellisense engine
+"10 - vim-airline: Lean & mean status/tabline for vim that's light as air.
+"11 - vim-fugitive: Fugitive is the premier Vim plugin for Git. it's so awesome, it should be illegal.
+"12 - neomake : Runs ShellCheck
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -22,17 +24,23 @@ Plug 'tiagofumo/vim-nerdtree-syntax-highlight'
 Plug 'ryanoasis/vim-devicons'
 "-------------------------------------------------------------
 Plug 'airblade/vim-gitgutter'
+Plug 'tpope/vim-fugitive'
 Plug 'vim-airline/vim-airline'
 Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 Plug 'morhetz/gruvbox'
-Plug 'benmills/vimux'
+Plug 'neomake/neomake'
+"Plug 'benmills/vimux'
 " Initialize plugin system
 call plug#end()
 colorscheme gruvbox
 "Pressing both 'jk' will invoke ESC key: "
 inoremap jk <ESC> 
+" default updatetime 4000ms is not good for async update
 
+"====== Neomake ShellCheck Logfile ======
+let g:neomake_logfile = '/tmp/neomake.log'
+"====== Neomake ShellCheck Logfile ======
 " default updatetime 4000ms is not good for async update
 set updatetime=100
 "===NERDTree======

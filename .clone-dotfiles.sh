@@ -1,12 +1,9 @@
-#!/usr/bin/env sh
+#!/bin/bash
 # set +e
+DOTFILES_PATH="${HOME}/.dotfiles"
 
-function downloader {
-command -v git >/dev/null 2>&1 || { echo >&2 "I require Git but it's not installed. Aborting..."; exit 1; }
-}
-
-function depends {
-  for i in nvim nodejs; do
+depends() {
+  for i in nvim nodejs shellcheck; do
     if hash $i 2>/dev/null; then
       echo ""
       echo $i "is installed"
@@ -17,38 +14,48 @@ function depends {
   done    
 }
 
-function dotfile {
-   git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME $@
+dotfile() {
+   git --git-dir="${DOTFILES_PATH}" --work-tree="${HOME}" "$@"
 }
 
 clear
+echo "Checking if .dotfiles already exist"
+sleep 1
+if [[ -d ${DOTFILES_PATH} ]]; then
+    echo ">>> ERROR: ${DOTFILES_PATH} already exists"
+    exit 1
+fi
+
 echo "Checking Dependencies..."
-downloader
+command -v git >/dev/null 2>&1 || { echo >&2 "I require Git but it's not installed. Aborting..."; exit 1; }
 depends
 sleep 1
 echo ""
 echo "Downloading .dotfiles"
 sleep 1
-git clone --bare https://github.com/cerebrux/.dotfiles.git $HOME/.dotfiles
+git clone --bare https://github.com/cerebrux/.dotfiles.git "${DOTFILES_PATH}"
 echo ""
 echo ""
 sleep 1
 echo "Checking if backup is neccesary for your .dotfiles"
 mkdir -p ~/.config-backup
-dotfile checkout
-if [ $? = 0 ]; then
-  echo "Download complete";
-  else
-    echo "Creating backup of your .dotfiles";
-    dotfile checkout 2>&1 | egrep "\s+\." | awk {'print $1'} | xargs -I{} mv {} .config-backup/{}
-    echo "Your previous .dotfiles are backed up at .config-backup folder"
-fi;
+if [[ ! "$(dotfile checkout 2>/dev/null)" ]]; then
+  echo ">>> NOTICE: Backing up existing files"
+  BACKUP_DIR="${HOME}/.dotfiles-backup/$(date +'%F_%T')"
+  FILES="$(dotfiles checkout 2>&1 | grep -E '^\s+(.*)$' | awk "{'print $1'}")"
+  for FILE in ${FILES}; do
+      mkdir --parents "$(dirname "${BACKUP_DIR}/${FILE}")" && mv "${HOME}/${FILE}" "$_"
+  done
+  dotfiles checkout 2>/dev/null
+fi
 sleep 1
-dotfile checkout
+
 dotfile config status.showUntrackedFiles no
+dotfiles remote set-url origin git@github.com:cerebrux/.dotfiles.git
 echo ""
 echo "Adding dotfile command to your .bashrc"
-echo "alias dotfile='git --git-dir=$HOME/.dotfiles/ --work-tree=$HOME'" >> $HOME/.bashrc
+echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.bashrc"
+echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.zshrc"
 echo ""
 echo "Downloading Vim-Plug for NeoVim"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -56,7 +63,7 @@ echo ""
 sleep 1
 echo "Downloading coc.nvim plugin"
 mkdir -p ~/.local/share/nvim/site/pack/coc/start
-cd ~/.local/share/nvim/site/pack/coc/start
+cd ~/.local/share/nvim/site/pack/coc/start || exit
 curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzfv -
 echo ""
 echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
@@ -65,6 +72,14 @@ mkdir ~/.vim/colors/
 cp ~/.vim/plugged/gruvbox/colors/gruvbox.vim ~/.vim/colors/gruvbox.vim
 cd ~/.vim/plugged/coc.nvim/ && ./install.sh
 sleep 1
+echo ""
+echo "Downloading Tmux Configs and Slimzsh"
+cd || exit
+git clone https://github.com/gpakosz/.tmux.git
+ln -s -f .tmux/.tmux.conf .
+cp .tmux/.tmux.conf.local .
+git clone --recursive https://github.com/changs/slimzsh.git ~/.slimzsh
+echo "source '$HOME/.slimzsh/slim.zsh'" >> "$HOME/.zshrc"
 echo ""
 echo ""
 echo "You are now ready !"

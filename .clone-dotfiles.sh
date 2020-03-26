@@ -57,8 +57,8 @@ dotfile config status.showUntrackedFiles no
 dotfile remote set-url origin git@github.com:cerebrux/.dotfiles.git
 echo ""
 echo "Adding dotfile command to .bashrc and .zshrc"
-echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.bashrc"
-echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.zshrc"
+(echo "" ; echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'") >> "$HOME/.bashrc"
+(echo "" ; echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'") >> "$HOME/.zshrc"
 sleep 1
 echo ""
 echo "Downloading Vim-Plug for NeoVim"
@@ -87,6 +87,6 @@ cp .tmux/.tmux.conf.local .
 echo ""
 echo "Adding slimzsh command to .zshrc"
 git clone --recursive https://github.com/changs/slimzsh.git ~/.slimzsh
-echo "source '$HOME/.slimzsh/slim.zsh'" >> "$HOME/.zshrc"
+echo "\nsource '$HOME/.slimzsh/slim.zsh'" >> "$HOME/.zshrc"
 echo ""
 echo "You are now ready !"

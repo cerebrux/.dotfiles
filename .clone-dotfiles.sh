@@ -85,8 +85,12 @@ git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf .
 cp .tmux/.tmux.conf.local .
 echo ""
-echo "Adding slimzsh command to .zshrc"
+echo "Downloading Slimzsh"
+sleep 1
 git clone --recursive https://github.com/changs/slimzsh.git ~/.slimzsh
-echo "\nsource '$HOME/.slimzsh/slim.zsh'" >> "$HOME/.zshrc"
+echo ""
+echo "Adding slimzsh command to .zshrc"
+sleep 1
+(echo "" ; echo "source '$HOME/.slimzsh/slim.zsh'") >> "$HOME/.zshrc"
 echo ""
 echo "You are now ready !"

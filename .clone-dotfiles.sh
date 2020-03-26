@@ -3,7 +3,7 @@
 DOTFILES_PATH="${HOME}/.dotfiles"
 
 depends() {
-  for i in nvim nodejs shellcheck; do
+  for i in zsh nvim nodejs shellcheck; do
     if hash $i 2>/dev/null; then
       echo ""
       echo $i "is installed"
@@ -21,8 +21,10 @@ dotfile() {
 clear
 echo "Checking if .dotfiles already exist"
 sleep 1
+echo ""
 if [[ -d ${DOTFILES_PATH} ]]; then
     echo ">>> ERROR: ${DOTFILES_PATH} already exists"
+    sleep 1
     exit 1
 fi
 
@@ -38,11 +40,11 @@ echo ""
 echo ""
 sleep 1
 echo "Checking if backup is neccesary for your .dotfiles"
-mkdir -p ~/.config-backup
 if [[ ! "$(dotfile checkout 2>/dev/null)" ]]; then
+  echo ""
   echo ">>> NOTICE: Backing up existing files"
   BACKUP_DIR="${HOME}/.dotfiles-backup/$(date +'%F_%T')"
-  FILES="$(dotfiles checkout 2>&1 | grep -E '^\s+(.*)$' | awk "{'print $1'}")"
+  FILES="$(dotfile checkout 2>&1 | grep -E '^\s+(.*)$' | awk "{'print $1'}")"
   for FILE in ${FILES}; do
       mkdir --parents "$(dirname "${BACKUP_DIR}/${FILE}")" && mv "${HOME}/${FILE}" "$_"
   done
@@ -53,9 +55,10 @@ sleep 1
 dotfile config status.showUntrackedFiles no
 dotfiles remote set-url origin git@github.com:cerebrux/.dotfiles.git
 echo ""
-echo "Adding dotfile command to your .bashrc"
+echo "Adding dotfile command to .bashrc and .zshrc"
 echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.bashrc"
 echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.zshrc"
+sleep
 echo ""
 echo "Downloading Vim-Plug for NeoVim"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
@@ -78,8 +81,9 @@ cd || exit
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf .
 cp .tmux/.tmux.conf.local .
+echo ""
+echo "Adding slimzsh command to .zshrc"
 git clone --recursive https://github.com/changs/slimzsh.git ~/.slimzsh
 echo "source '$HOME/.slimzsh/slim.zsh'" >> "$HOME/.zshrc"
-echo ""
 echo ""
 echo "You are now ready !"

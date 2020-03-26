@@ -59,7 +59,7 @@ echo ""
 echo "Adding dotfile command to .bashrc and .zshrc"
 echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.bashrc"
 echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.zshrc"
-sleep
+sleep 1
 echo ""
 echo "Downloading Vim-Plug for NeoVim"
 curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim

@@ -33,6 +33,7 @@ Plug 'neomake/neomake'
 "Plug 'benmills/vimux'
 " Initialize plugin system
 call plug#end()
+set termguicolors "Neovim and recent Vim support true color terminal out of the box with just a single configuration option. No workarounds anymore. Just add set termguicolors "
 colorscheme gruvbox
 "Pressing both 'jk' will invoke ESC key: "
 inoremap jk <ESC> 

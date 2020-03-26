@@ -45,7 +45,7 @@ if [[ ! "$(dotfile checkout 2>/dev/null)" ]]; then
   echo ""
   echo ">>> NOTICE: Backing up existing files"
   BACKUP_DIR="${HOME}/.dotfiles-backup/$(date +'%F_%T')"
-  FILES="$(dotfile checkout 2>&1 | grep -E '^\s+(.*)$' | awk "{'print $1'}")"
+  FILES="$(dotfile checkout 2>&1 | grep -E '^\s+(.*)$' | awk {'print $1'})"
   for FILE in ${FILES}; do
       mkdir --parents "$(dirname "${BACKUP_DIR}/${FILE}")" && mv "${HOME}/${FILE}" "$_"
   done

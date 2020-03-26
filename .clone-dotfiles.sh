@@ -3,7 +3,7 @@
 DOTFILES_PATH="${HOME}/.dotfiles"
 
 depends() {
-  for i in zsh nvim nodejs shellcheck; do
+  for i in zsh nodejs shellcheck; do
     if hash $i 2>/dev/null; then
       echo ""
       echo $i "is installed"
@@ -30,6 +30,7 @@ fi
 
 echo "Checking Dependencies..."
 command -v git >/dev/null 2>&1 || { echo >&2 "I require Git but it's not installed. Aborting..."; exit 1; }
+command -v nvim >/dev/null 2>&1 || { echo >&2 "I require NeoVim but it's not installed. Aborting..."; exit 1; }
 depends
 sleep 1
 echo ""

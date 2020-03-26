@@ -49,12 +49,12 @@ if [[ ! "$(dotfile checkout 2>/dev/null)" ]]; then
   for FILE in ${FILES}; do
       mkdir --parents "$(dirname "${BACKUP_DIR}/${FILE}")" && mv "${HOME}/${FILE}" "$_"
   done
-  dotfiles checkout 2>/dev/null
+  dotfile checkout 2>/dev/null
 fi
 sleep 1
 
 dotfile config status.showUntrackedFiles no
-dotfiles remote set-url origin git@github.com:cerebrux/.dotfiles.git
+dotfile remote set-url origin git@github.com:cerebrux/.dotfiles.git
 echo ""
 echo "Adding dotfile command to .bashrc and .zshrc"
 echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'" >> "$HOME/.bashrc"

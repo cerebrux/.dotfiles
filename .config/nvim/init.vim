@@ -12,6 +12,7 @@
 "10 - vim-airline: Lean & mean status/tabline for vim that's light as air.
 "11 - vim-fugitive: Fugitive is the premier Vim plugin for Git. it's so awesome, it should be illegal.
 "12 - neomake : Runs ShellCheck
+"13 - vim-go : Go language support
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
 
@@ -30,6 +31,7 @@ Plug 'ctrlpvim/ctrlp.vim' " fuzzy find files
 Plug 'scrooloose/nerdcommenter'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
+Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 "Plug 'benmills/vimux'
 " Initialize plugin system
 call plug#end()

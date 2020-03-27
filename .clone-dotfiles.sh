@@ -75,8 +75,7 @@ sleep 1
 echo ""
 nvim --headless +PlugInstall +qall
 mkdir ~/.vim/colors/
-cp ~/.vim/plugged/gruvbox/colors/gruvbox.vim ~/.vim/colors/gruvbox.vim
-#cd ~/.vim/plugged/coc.nvim/ && ./install.sh
+ln -s ~/.vim/plugged/gruvbox/colors/gruvbox.vim ~/.vim/colors/gruvbox.vim
 sleep 1
 echo ""
 echo "Downloading Tmux Configs and Slimzsh"

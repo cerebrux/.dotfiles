@@ -3,7 +3,7 @@
 DOTFILES_PATH="${HOME}/.dotfiles"
 
 depends() {
-  for i in zsh nodejs shellcheck; do
+  for i in zsh jump nodejs shellcheck; do
     if hash $i 2>/dev/null; then
       echo ""
       echo $i "is installed"

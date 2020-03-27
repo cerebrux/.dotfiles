@@ -18,18 +18,20 @@ First install the following dependencies:
 
 * Fira Code fonts : We need Ligatures for icons and symbols
 * NeoVim : Because that is what I use
-* git : This is for downliading the repository
+* git : This is for downloading the repository
 * nodejs : Is used by the CoC Plugin
 * npm : Is used by the CoC Plugin
 * tmux : Because why use regular shell session when you can tmux ?
 * zsh : Bash is for Boomers
 * shellcheck : Is used by Neomake plugin to check your shell scripts
+* Jump : It learns from you by keeping track of the directories you visit.
 
 For Ubunut/Debian and derivatives you can install the dependencies by running:
 
 ```
 sudo apt install fonts-firacode git nodejs npm tmux zsh shellcheck
 sudo apt install snapd
+wget https://github.com/gsamokovarov/jump/releases/download/v0.30.1/jump_0.30.1_amd64.deb && sudo apt install ./jump_0.30.1_amd64.deb
 sudo snap install nvim --beta --classic
 ```
 

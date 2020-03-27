@@ -89,7 +89,10 @@ sleep 1
 git clone --recursive https://github.com/changs/slimzsh.git ~/.slimzsh
 echo ""
 echo "Adding slimzsh command to .zshrc"
-sleep 1
 (echo "" ; echo "source '$HOME/.slimzsh/slim.zsh'") >> "$HOME/.zshrc"
+sleep 1
+echo "Adding Jump to your .bashrc and .zshrc"
+(echo "" ; echo "eval '$(jump shell)'") >> "$HOME/.zshrc"
+(echo "" ; echo "eval '$(jump shell)'") >> "$HOME/.bashrc"
 echo ""
 echo "You are now ready !"

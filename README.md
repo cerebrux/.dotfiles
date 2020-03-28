@@ -33,6 +33,8 @@ sudo apt install fonts-firacode curl git nodejs npm tmux zsh shellcheck kitty
 wget https://github.com/gsamokovarov/jump/releases/download/v0.30.1/jump_0.30.1_amd64.deb && sudo apt install ./jump_0.30.1_amd64.deb
 sudo apt install snapd
 sudo snap install nvim --beta --classic
+sudo snap install go --classic
+sudo chsh -s /bin/zsh "$USER"
 ```
 
 ### Step 2: Run the installer

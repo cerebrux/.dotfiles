@@ -26,7 +26,7 @@ First install the following dependencies:
 * shellcheck : Is used by Neomake plugin to check your shell scripts
 * Jump : It learns from you by keeping track of the directories you visit.
 
-For Ubunut/Debian and derivatives you can install the dependencies by running:
+For Ubunut/Debian and officially supported derivatives you can install the dependencies by running:
 
 ```
 sudo apt install fonts-firacode git nodejs npm tmux zsh shellcheck kitty

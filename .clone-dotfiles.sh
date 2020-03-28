@@ -94,5 +94,12 @@ sleep 1
 echo "Adding Jump to your .bashrc and .zshrc"
 (echo "" ; echo "eval '$(jump shell)'") >> "$HOME/.zshrc"
 (echo "" ; echo "eval '$(jump shell)'") >> "$HOME/.bashrc"
+sleep 1
 echo ""
-echo "You are now ready !"
+echo "Changing your shell to zsh... Please type your password"
+command -v zsh >/dev/null 2>&1 || { echo >&2 "I require ZSH shell but it's not installed. Aborting..."; exit 1; }
+sleep 1
+sudo chsh -s /bin/zsh "$USER"
+sleep 1
+echo ""
+echo "You are now ready !... Please reload/restart your shell"

@@ -29,9 +29,9 @@ First install the following dependencies:
 For Ubunut/Debian and derivatives you can install the dependencies by running:
 
 ```
-sudo apt install fonts-firacode git nodejs npm tmux zsh shellcheck
-sudo apt install snapd
+sudo apt install fonts-firacode git nodejs npm tmux zsh shellcheck kitty
 wget https://github.com/gsamokovarov/jump/releases/download/v0.30.1/jump_0.30.1_amd64.deb && sudo apt install ./jump_0.30.1_amd64.deb
+sudo apt install snapd
 sudo snap install nvim --beta --classic
 ```
 
@@ -48,7 +48,25 @@ The script will create te environment, backup your old dotfiles and then clone t
 
 Now run nvim and check if coc.nvim starts updating the plugins. 
 Once it's done, run ":checkhealth" command in neovim to make sure that it's properly setup
+Then configure the Language Server acording [Lang Servers Documentation](https://github.com/neoclide/coc.nvim/wiki/Language-servers)
+E.g for bash scripting and Golang add the following to .config/coc/extensions/node_modules/coc-go/.vim/coc-settings.json
 
+```
+  "languageserver": {
+    "bash": {
+      "command": "bash-language-server",
+      "args": ["start"],
+      "filetypes": ["sh"],
+      "ignoredRootPaths": ["~"]
+    },
+    "golang": {
+      "command": "gopls",
+      "rootPatterns": ["go.mod"],
+      "disableWorkspaceFolders": true,
+      "filetypes": ["go"]
+    }
+  }
+```
 NeoVim: Plungins that are enabled 
 ---
 

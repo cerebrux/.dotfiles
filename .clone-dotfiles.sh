@@ -93,8 +93,8 @@ echo "Adding slimzsh command to .zshrc"
 (echo "" ; echo "source '$HOME/.slimzsh/slim.zsh'") >> "$HOME/.zshrc"
 sleep 1
 echo "Adding Jump to your .bashrc and .zshrc"
-(echo "" ; echo "eval '$(jump shell)'") >> "$HOME/.zshrc"
-(echo "" ; echo "eval '$(jump shell)'") >> "$HOME/.bashrc"
+(echo "" ; echo "eval '$(jump shell)')" >> "$HOME/.zshrc"
+(echo "" ; echo "eval '$(jump shell)')" >> "$HOME/.bashrc"
 sleep 1
 echo ""
 echo "You are now ready !... Please reload/restart your shell"

@@ -36,6 +36,7 @@ sudo snap install nvim --beta --classic
 sudo snap install go --classic
 chsh -s /bin/zsh 
 ```
+Now logout from your desktop session and login back so that the paths for shell and golang to be properly registered for your user account
 
 ### Step 2: Run the installer
 

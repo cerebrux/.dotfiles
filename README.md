@@ -29,7 +29,7 @@ First install the following dependencies:
 For Ubunut/Debian and officially supported derivatives you can install the dependencies by running:
 
 ```
-sudo apt install fonts-firacode git nodejs npm tmux zsh shellcheck kitty
+sudo apt install fonts-firacode curl git nodejs npm tmux zsh shellcheck kitty
 wget https://github.com/gsamokovarov/jump/releases/download/v0.30.1/jump_0.30.1_amd64.deb && sudo apt install ./jump_0.30.1_amd64.deb
 sudo apt install snapd
 sudo snap install nvim --beta --classic

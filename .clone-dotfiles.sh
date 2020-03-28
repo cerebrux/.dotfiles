@@ -31,6 +31,7 @@ fi
 echo "Checking Dependencies..."
 command -v git >/dev/null 2>&1 || { echo >&2 "I require Git but it's not installed. Aborting..."; exit 1; }
 command -v nvim >/dev/null 2>&1 || { echo >&2 "I require NeoVim but it's not installed. Aborting..."; exit 1; }
+command -v curl >/dev/null 2>&1 || { echo >&2 "I require Curl but it's not installed. Aborting..."; exit 1; }
 depends
 sleep 1
 echo ""

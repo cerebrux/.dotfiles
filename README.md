@@ -16,7 +16,7 @@ Also the installer will download and configure:
 
 First install the following dependencies:
 
-* Fira Code fonts : We need Ligatures for icons and symbols
+* Nerd Fonts Fira Code : We need Ligatures for icons and symbols
 * NeoVim : Because that is what I use
 * git : This is for downloading the repository
 * nodejs : Is used by the CoC Plugin

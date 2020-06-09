@@ -46,7 +46,7 @@ if [[ ! "$(dotfile checkout 2>/dev/null)" ]]; then
   echo ""
   echo ">>> NOTICE: Backing up existing files"
   BACKUP_DIR="${HOME}/.dotfiles-backup/$(date +'%F_%T')"
-  FILES="$(dotfile checkout 2>&1 | grep -E '^\s+(.*)$' | awk {'print $1'})"
+  FILES="$(dotfile checkout 2>&1 | grep -E '^\s+(.*)$' | awk '{print $1}')"
   for FILE in ${FILES}; do
       mkdir --parents "$(dirname "${BACKUP_DIR}/${FILE}")" && mv "${HOME}/${FILE}" "$_"
   done
@@ -58,8 +58,15 @@ dotfile config status.showUntrackedFiles no
 dotfile remote set-url origin git@github.com:cerebrux/.dotfiles.git
 echo ""
 echo "Adding dotfile command to .bashrc and .zshrc"
-(echo "" ; echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'") >> "$HOME/.bashrc"
-(echo "" ; echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'") >> "$HOME/.zshrc"
+{
+echo
+echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'"
+}>> "$HOME/.bashrc"
+
+{
+echo
+echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'"
+}>> "$HOME/.zshrc"
 sleep 1
 echo ""
 echo "Downloading Vim-Plug for NeoVim"
@@ -90,12 +97,23 @@ sleep 1
 git clone --recursive https://github.com/changs/slimzsh.git ~/.slimzsh
 echo ""
 echo "Adding slimzsh command to .zshrc"
-(echo "" ; echo "source '$HOME/.slimzsh/slim.zsh'") >> "$HOME/.zshrc"
+
+{
+echo
+echo "source '$HOME/.slimzsh/slim.zsh'"
+}>> "$HOME/.zshrc"
+
 sleep 1
 echo "Adding Jump to your .bashrc and .zshrc"
-(echo "" ; echo 'eval "$(jump shell)")' >> "$HOME/.bashrc"
-echo "add test"
-(echo "" ; echo 'eval "$(jump shell)")' >> "$HOME/.zshrc"
+{
+  echo
+  echo "eval $(jump shell)" 
+}>> "$HOME/.bashrc"
+
+{
+  echo
+  echo "eval $(jump shell)"
+}>> "$HOME/.zshrc"
 sleep 1
 echo ""
 echo "You are now ready !... Please reload/restart your shell"

@@ -39,6 +39,12 @@ Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
 call plug#end()
 set termguicolors "Neovim and recent Vim support true color terminal out of the box with just a single configuration option. No workarounds anymore. Just add set termguicolors "
 colorscheme gruvbox
+" Add mouse resize with drag
+if has('mouse')
+  set mouse=a
+endif
+
+
 "Pressing both 'jk' will invoke ESC key: "
 inoremap jk <ESC> 
 " default updatetime 4000ms is not good for async update

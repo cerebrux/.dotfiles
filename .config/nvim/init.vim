@@ -15,7 +15,9 @@
 "13 - vim-go : Go language support
 " Specify a directory for plugins
 call plug#begin('~/.vim/plugged')
-
+"Install  https://aur.archlinux.org/packages/nerd-fonts-fira-code/
+" the following probably is not needed
+"set guifont=Fira\ Code\ 11
 Plug 'neoclide/coc.nvim', {'branch': 'release'}
 
 "----NERDTree File Manager Plugins with Git status support----
@@ -46,6 +48,8 @@ let g:neomake_logfile = '/tmp/neomake.log'
 "====== Neomake ShellCheck Logfile ======
 " default updatetime 4000ms is not good for async update
 set updatetime=100
+call neomake#configure#automake('rw', 1000)
+
 "===NERDTree======
 "Keyboard Commands
 "Type :help NERDTreeMappings to read through all of the default keyboard shortcuts. These are the ones I use the most frequently:

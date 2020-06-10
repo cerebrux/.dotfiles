@@ -37,7 +37,7 @@ sleep 1
 echo ""
 echo "Downloading .dotfiles"
 sleep 1
-git clone --bare https://github.com/cerebrux/.dotfiles.git "${DOTFILES_PATH}"
+git clone --bare --branch server https://github.com/cerebrux/.dotfiles.git "${DOTFILES_PATH}"
 echo ""
 echo ""
 sleep 1

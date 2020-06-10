@@ -78,7 +78,7 @@ sleep 1
 echo "Updating Plugins"
 sleep 1
 echo ""
-nvim --headless +PlugInstall +qall
+vim --headless +PlugInstall +qall
 mkdir ~/.vim/colors/
 ln -s ~/.vim/plugged/gruvbox/colors/gruvbox.vim ~/.vim/colors/gruvbox.vim
 sleep 1

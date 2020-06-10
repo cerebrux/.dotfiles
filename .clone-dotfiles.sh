@@ -3,7 +3,7 @@
 DOTFILES_PATH="${HOME}/.dotfiles"
 
 depends() {
-  for i in zsh jump nodejs shellcheck; do
+  for i in zsh jump shellcheck; do
     if hash $i 2>/dev/null; then
       echo ""
       echo $i "is installed"
@@ -30,7 +30,7 @@ fi
 
 echo "Checking Dependencies..."
 command -v git >/dev/null 2>&1 || { echo >&2 "I require Git but it's not installed. Aborting..."; exit 1; }
-command -v nvim >/dev/null 2>&1 || { echo >&2 "I require NeoVim but it's not installed. Aborting..."; exit 1; }
+command -v vim >/dev/null 2>&1 || { echo >&2 "I require Vim but it's not installed. Aborting..."; exit 1; }
 command -v curl >/dev/null 2>&1 || { echo >&2 "I require Curl but it's not installed. Aborting..."; exit 1; }
 depends
 sleep 1
@@ -69,16 +69,12 @@ echo "alias dotfile='git --git-dir=${DOTFILES_PATH} --work-tree=$HOME'"
 }>> "$HOME/.zshrc"
 sleep 1
 echo ""
-echo "Downloading Vim-Plug for NeoVim"
-curl -fLo ~/.local/share/nvim/site/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+echo "Downloading Vim-Plug for Vim"
+curl -fLo ~/.vim/autoload/plug.vim --create-dirs https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim
+
 echo ""
 sleep 1
-echo "Downloading coc.nvim plugin"
-mkdir -p ~/.local/share/nvim/site/pack/coc/start
-cd ~/.local/share/nvim/site/pack/coc/start || exit
-curl --fail -L https://github.com/neoclide/coc.nvim/archive/release.tar.gz|tar xzfv -
-echo ""
-echo "Downloading Vim-Plug for NeoVim and Updating Plugins"
+echo "Updating Plugins"
 sleep 1
 echo ""
 nvim --headless +PlugInstall +qall
@@ -90,7 +86,7 @@ echo "Downloading Tmux Configs and Slimzsh"
 cd || exit
 git clone https://github.com/gpakosz/.tmux.git
 ln -s -f .tmux/.tmux.conf .
-cp .tmux/.tmux.conf.local .
+#cp .tmux/.tmux.conf.local .
 echo ""
 echo "Downloading Slimzsh"
 sleep 1

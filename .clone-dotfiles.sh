@@ -1,5 +1,6 @@
 #!/bin/bash
 # set +e
+cd ~/
 DOTFILES_PATH="${HOME}/.dotfiles"
 
 depends() {

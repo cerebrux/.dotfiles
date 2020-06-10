@@ -36,7 +36,7 @@ Now logout from your server session and login back so that the paths for shell a
 
 Then run the following:
 ```
-wget -O - https://raw.githubusercontent.com/cerebrux/.dotfiles/master/.clone-dotfiles.sh | bash
+wget -O - https://raw.githubusercontent.com/cerebrux/.dotfiles/server/.clone-dotfiles.sh | bash
 ```
 
 The script will create te environment, backup your old dotfiles and then clone this repo.

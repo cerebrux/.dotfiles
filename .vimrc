@@ -164,20 +164,7 @@ let g:neomake_logfile = '/tmp/neomake.log'
 " default updatetime 4000ms is not good for async update
 set updatetime=100
 "call neomake#configure#automake('rw', 1000)
-function! MyOnBattery()
-  if has('macunix')
-    return match(system('pmset -g batt'), "Now drawing from 'Battery Power'") != -1
-  elseif has('unix')
-    return readfile('/sys/class/power_supply/AC/online') == ['0']
-  endif
-  return 0
-endfunction
 
-if MyOnBattery()
-  call neomake#configure#automake('w')
-else
-  call neomake#configure#automake('nw', 1000)
-endif
 "===NERDTree======
 "Keyboard Commands
 "Type :help NERDTreeMappings to read through all of the default keyboard shortcuts. These are the ones I use the most frequently:

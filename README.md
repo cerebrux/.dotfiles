@@ -34,17 +34,19 @@ Now logout from your server session and login back so that the paths for shell a
 
 ### Step 2: Run the installer
 
-Then run the following:
+Then download the script and run it:
 ```
-wget -O - https://raw.githubusercontent.com/cerebrux/.dotfiles/server/.clone-dotfiles.sh | bash
+wget -O clone-dotfiles.sh https://raw.githubusercontent.com/cerebrux/.dotfiles/server/.clone-dotfiles.sh
+
+sh clone-dotfiles.sh
 ```
 
 The script will create te environment, backup your old dotfiles and then clone this repo.
 
 ### Step 3: Test the environment
 
-Now run vim and check if it starts updating the plugins. 
-Once it's done, run ":checkhealth" command in vim to make sure that it's properly setup
+The script should automatically run vim to start installing the plugins and then exit. 
+Once it's done, run Vim and then ":checkhealth" command in vim to make sure that it's properly setup
 
 Vim: Plungins that are enabled 
 ---

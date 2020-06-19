@@ -12,6 +12,15 @@ Also the installer will download and configure:
 
 ## How to download
 
+### Step 0: SSH to Server using Kitty terminal
+
+if you use **kitty** terminal (as I do) first ssh in using the following command which will automatically copy the terminfo files to the server
+```
+kitty +kitten ssh myserver
+```
+otherwise when at the end you launch tmux, it will faill with: `open terminal failed: missing or unsuitable terminal: xterm-kitty`
+source: [I get errors about the terminal being unknown or opening the terminal failing when SSHing into a different computer?](https://sw.kovidgoyal.net/kitty/faq.html#i-get-errors-about-the-terminal-being-unknown-or-opening-the-terminal-failing-when-sshing-into-a-different-computer)
+
 ### Step 1: Dependencies 
 
 First install the following dependencies:

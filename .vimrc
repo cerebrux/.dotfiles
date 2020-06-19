@@ -33,7 +33,9 @@ Plug 'neomake/neomake'
 " Initialize plugin system
 call plug#end()
 set termguicolors "Neovim and recent Vim support true color terminal out of the box with just a single configuration option. No workarounds anymore. Just add set termguicolors "
-silent! colorscheme gruvbox "so in case (n)vim cannot find the colorscheme it doesn't choke on that.
+autocmd vimenter * colorscheme gruvbox
+set background=dark
+"silent! colorscheme gruvbox "so in case (n)vim cannot find the colorscheme it doesn't choke on that.
 " Add mouse resize with drag
 if has('mouse')
   set mouse=a

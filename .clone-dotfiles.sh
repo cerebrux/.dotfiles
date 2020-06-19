@@ -4,7 +4,7 @@ cd ~/ || exit
 DOTFILES_PATH="${HOME}/.dotfiles"
 
 depends() {
-  for i in zsh jump shellcheck; do
+  for i in zsh shellcheck; do
     if hash $i 2>/dev/null; then
       echo ""
       echo $i "is installed"
@@ -100,17 +100,6 @@ echo
 echo "source '$HOME/.slimzsh/slim.zsh'"
 }>> "$HOME/.zshrc"
 
-sleep 1
-echo "Adding Jump to your .bashrc and .zshrc"
-{
-  echo
-  echo "eval $(jump shell)" 
-}>> "$HOME/.bashrc"
-
-{
-  echo
-  echo "eval $(jump shell)"
-}>> "$HOME/.zshrc"
 sleep 1
 echo ""
 echo "You are now ready !... Please reload/restart your shell"

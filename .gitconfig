@@ -1,6 +1,6 @@
 [user]
-	email = example@email.com
-	name = Name Lastname
+  email = example@email.com
+  name = Name Lastname
 [core]
   editor = code # or nvim or vim or gedit etc
   # Don't paginate output by default
@@ -10,7 +10,7 @@
   # Don't consider trailing space change as a cause for merge conflicts
   whitespace = -trailing-space
 [color]
-	ui = true
+  ui = true
 [color "branch"]
   current = yellow reverse
   local = yellow
@@ -133,72 +133,50 @@
   prereleaseSuffix = -rc
   prereleaseSuffix = .rc
 [alias]
-    # Add and remove all changes, note how this alias is calling another alias
-    addremove = !git r && git add . --all
-
-    # Show all of my configured aliases
-    aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
-
-    # For when you made that commit a bit too early, amend
-    amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
-    
-    # Useful when you have to update your last commit
-    # with staged files without editing the commit message.
-    oops = commit --amend --no-edit
-    # Show all branches
-    br = branch -av
-
-    # Show the current branch name (usefull for shell prompts)
-    brname = !git branch | grep "^*" | awk '{ print $2 }'
-
-    # Delete a branch
-    brdel = branch -D
-
-    # Which files are receiving the most "love"
-    churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 "," $2}'
-
-    # View the log and diff for a commit (previous if no SHA1 provided)
-    details = log -n1 -p --format=fuller
-
-    # Save a repo as a tarball
-    export = archive -o latest.tar.gz -9 --prefix=latest/
-
-    # Unstage changes from the index
-    unstage = reset HEAD --
-
-    # View a pretty git log with branch tree
-    lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
-
-    # Return a list of commit SHA1s
-    lsha = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
-
-    # Remove deleted files
-    rmd = !git ls-files -z --deleted | xargs -0 git rm
-
-    # Return the repository's root directory (usefull for shell prompts)
-    root = rev-parse --show-toplevel
-
-    # Update all submodules
-    subup = submodule update --init
-
-    # List all tags
-    tags = tag -l
-
-    # Start a new local repository and perform initial commit
-    this = !git init && git add . && git commmit -m \"Initial commit.\"
-
-    # Thin out older metadata within the repository, reduceses filesystem footprint
-    trim = !git reflog expire --expire=now --all && git gc --prune=now
-    
-    # Edit last commit message
-    reword = commit --amend
-  
-    # Undo last commit but keep changed files in stage
-    uncommit = reset --soft HEAD~1
-    
-    # Remove file(s) from Git but not from disk
-    untrack = rm --cache --
-    
-    # List local commits that were not pushed to remote repository
-    review-local = "!git lg @{push}.."
-
+  # Add and remove all changes, note how this alias is calling another alias
+  addremove = !git r && git add . --all
+  # Show all of my configured aliases
+  aliases = !git config --list | grep 'alias\\.' | sed 's/alias\\.\\([^=]*\\)=\\(.*\\)/\\1\\ \t => \\2/' | sort
+  # For when you made that commit a bit too early, amend
+  amend = !git log -n 1 --pretty=tformat:%s%n%n%b | git commit -F - --amend
+  # Useful when you have to update your last commit
+  # with staged files without editing the commit message.
+  oops = commit --amend --no-edit
+  # Show all branches
+  br = branch -av
+  # Show the current branch name (usefull for shell prompts)
+  brname = !git branch | grep "^*" | awk '{ print $2 }'
+  # Delete a branch
+  brdel = branch -D
+  # Which files are receiving the most "love"
+  churn = !git log --all -M -C --name-only --format='format:' "$@" | sort | grep -v '^$' | uniq -c | sort | awk 'BEGIN {print "count,file"} {print $1 "," $2}'
+  # View the log and diff for a commit (previous if no SHA1 provided)
+  details = log -n1 -p --format=fuller
+  # Save a repo as a tarball
+  export = archive -o latest.tar.gz -9 --prefix=latest/
+  # Unstage changes from the index
+  unstage = reset HEAD --
+  # View a pretty git log with branch tree
+  lg = log --graph --date=relative --pretty=tformat:'%Cred%h%Creset -%C(auto)%d%Creset %s %Cgreen(%an %ad)%Creset'
+  # Return a list of commit SHA1s
+  lsha = "!f() { git log $* | grep '^commit ' | cut -f 2 -d ' '; }; f"
+  # Remove deleted files
+  rmd = !git ls-files -z --deleted | xargs -0 git rm
+  # Return the repository's root directory (usefull for shell prompts)
+  root = rev-parse --show-toplevel
+  # Update all submodules
+  subup = submodule update --init
+  # List all tags
+  tags = tag -l
+  # Start a new local repository and perform initial commit
+  this = !git init && git add . && git commmit -m \"Initial commit.\"
+  # Thin out older metadata within the repository, reduceses filesystem footprint
+  trim = !git reflog expire --expire=now --all && git gc --prune=now
+  # Edit last commit message
+  reword = commit --amend
+  # Undo last commit but keep changed files in stage
+  uncommit = reset --soft HEAD~1
+  # Remove file(s) from Git but not from disk
+  untrack = rm --cache --
+  # List local commits that were not pushed to remote repository
+  review-local = "!git lg @{push}.."

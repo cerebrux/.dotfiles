@@ -25,7 +25,7 @@
   changed = green
   untracked = red
 [diff]
-  tool = meld
+  tool = vimdiff
   # Use better, descriptive initials (c, i, w) instead of a/b.
   mnemonicPrefix = true
   # Show renames/moves as such
@@ -62,7 +62,7 @@
   # Disable fast-forward merges as default merge strategy.
   # Force explicit call of `git merge --ff …`.
   ff = false
-	tool = meld
+  tool = vim
   # Custom/dedicated merge drive for npm lock files (`package-lock.json`).
   # Also works with Yarn.
   # Use Git attributes to set targeted files (located at `~/.config/git/attributes``

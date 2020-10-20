@@ -34,6 +34,7 @@ Plug 'scrooloose/nerdcommenter'
 Plug 'morhetz/gruvbox'
 Plug 'neomake/neomake'
 Plug 'fatih/vim-go', { 'do': ':GoUpdateBinaries' }
+Plug 'kassio/neoterm'
 "Plug 'benmills/vimux'
 " Initialize plugin system
 call plug#end()
@@ -266,7 +267,11 @@ set shiftwidth=2
 " always uses spaces instead of tab characters
 set expandtab
 
-
+let g:neoterm_default_mod='belowright' " open terminal in bottom split
+let g:neoterm_size=16 " terminal split size
+let g:neoterm_autoscroll=1 " scroll to the bottom when running a command
+nnoremap <leader><cr> :TREPLSendLine<cr>j " send current line and move down
+vnoremap <leader><cr> :TREPLSendSelection<cr> " send current selection
 
 " coc config
 let g:coc_global_extensions = [

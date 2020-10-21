@@ -1,0 +1,136 @@
+# Use custom format
+format = "$all"
+
+# Wait 10 milliseconds for starship to check files under the current directory.
+scan_timeout = 10
+# disable starship from forcing a new line to be taken. Solved the empty line 
+# at start of terminal
+add_newline = false
+
+disabled = true
+# Replace the "❯" symbol in the prompt with "➜"
+[character]                            # The name of the module we are configuring is "character"
+success_symbol = "[➟](bold green)"     # The "success_symbol" segment is being set to "➜" with the color "bold green"
+error_symbol = "[✗](bold red) "
+
+[status]
+style = "blue"
+symbol = "✗ "
+format = "[\\[$symbol$status\\]]($style) "
+disabled = false
+
+[cmd_duration]
+min_time = 4
+show_milliseconds = false
+disabled = false
+format = " took [$duration]($style)"
+style = "bold italic #87A752"
+
+[directory]
+#truncation_length = 5
+#format = "[$path]($style)[$lock_symbol]($lock_style) "
+truncation_length = 5
+truncate_to_repo = true # truncates directory to root folder if in github repo
+#format = " ~ "
+style = "bold italic #87A752"
+
+[docker]
+symbol = " "
+
+[golang]
+symbol = " "
+
+[git_branch]
+symbol = " "
+
+[git_commit]
+commit_hash_length = 8
+#style = "bold white"
+
+[git_state]
+progress_divider = " of "
+
+[git_status]
+
+conflicted = "⚔️ "
+ahead = " ⇡ ×${count}"
+behind = " ⇣ ×${count}"
+diverged = " ⇡ ×${ahead_count} ⇣ ×${behind_count}"
+untracked = " ? ×${count}"
+stashed = "="
+modified = " * ×${count}"
+staged = " + ×${count}"
+renamed = " » ×${count}"
+deleted = " ✘  ×${count}"
+style = "bold red"
+#format = "[$all_status$ahead_behind]($style)"
+
+[hostname]
+ssh_only = false
+format = "Linux "
+#format = "<[$hostname]($style)>"
+trim_at = "."
+#style = "bold dimmed white"
+disabled = false
+style = "bold italic #87A752"
+
+[memory_usage]
+symbol = " "
+format = "$symbol[${ram}( | ${swap})]($style) "
+show_percentage = true
+show_swap = true
+threshold = 70
+style = "bold dimmed white"
+disabled = false
+
+# Disable the package module, hiding it from the prompt completely
+[nodejs]
+symbol = " "
+
+[package]
+symbol = " "
+disabled = true
+
+[php]
+symbol = " "
+
+[python]
+symbol = " "
+format = "[$symbol$version]($style) "
+style = "bold green"
+[ruby]
+symbol = " "
+
+[rust]
+symbol = " "
+
+# when capacity is over 30%, the battery indicator will not be displayed
+
+[battery]
+full_symbol = " "
+charging_symbol = " "
+discharging_symbol = " "
+
+[[battery.display]]
+threshold = 10
+style = "bold red"
+
+[[battery.display]]
+threshold = 30
+style = "bold yellow"
+
+[[battery.display]]
+threshold = 100
+style = "bold green"
+
+[time]
+time_format = "%T"
+format = "%R"
+#format = "🕙 $time($style) "
+style = "bright-white"
+disabled = false
+
+[username]
+disabled = false
+style_user = "bold dimmed blue"
+show_always = false
